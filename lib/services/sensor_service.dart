@@ -43,6 +43,7 @@ class SensorService extends ChangeNotifier {
     if (_actualizando) return;
     _actualizando = true;
     try {
+      // El monitoreo solo funciona con la app en primer plano.
       while (!_liberado && (habilitado && _enPrimerPlano) != _monitoreando) {
         if (habilitado && _enPrimerPlano) {
           _iniciar();
@@ -90,6 +91,7 @@ class SensorService extends ChangeNotifier {
         ),
       ),
     );
+    // Detecta sensores que todavía no han enviado lecturas.
     _temporizadorDisponibilidad = Timer(const Duration(seconds: 4), () {
       _noDisponibles.addAll(
         tipos.where((tipo) => !_lecturas.containsKey(tipo)),

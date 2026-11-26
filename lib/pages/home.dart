@@ -84,6 +84,7 @@ class _EstadoHomePage extends State<HomePage> {
       if (!mounted) return true;
       ++_solicitudConexion;
       setState(() {
+        // Avisa al historial y a las estadísticas que hay una nueva lectura.
         _revision++;
         _conectado = true;
         _errorConexion = null;

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/lectura_sensor.dart';
@@ -8,12 +9,15 @@ class SupabaseService {
   SupabaseService(this._cliente, {required this.errorConfiguracion});
 
   static Future<SupabaseService> inicializar() async {
-    const url = String.fromEnvironment('SUPABASE_URL');
-    const clavePublica = String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY');
+    await dotenv.load(fileName: '.env', isOptional: true);
+    final url = dotenv.maybeGet('SUPABASE_URL')?.trim() ?? '';
+    final clavePublica =
+        dotenv.maybeGet('SUPABASE_PUBLISHABLE_KEY')?.trim() ?? '';
     if (url.isEmpty || clavePublica.isEmpty) {
       return SupabaseService(
         null,
-        errorConfiguracion: 'Faltan la URL y la clave pública de Supabase.',
+        errorConfiguracion:
+            'Completa la URL y la clave pública de Supabase en .env.',
       );
     }
 
@@ -49,6 +53,7 @@ class SupabaseService {
 
   Future<void> guardarLectura(LecturaSensor lectura) async {
     final cliente = await _obtenerClienteAutenticado();
+    // Reintentar con el mismo ID evita duplicar la lectura.
     await cliente
         .from(_tabla)
         .upsert(
@@ -93,6 +98,7 @@ class SupabaseService {
         .order('id', ascending: false)
         .limit(30)
         .timeout(_tiempoLimite);
+    // El gráfico muestra las lecturas de la más antigua a la más reciente.
     return filas.reversed.map(LecturaSensor.desdeJson).toList();
   }
 
@@ -103,6 +109,7 @@ class SupabaseService {
     }
     final sesion = cliente.auth.currentSession;
     if (sesion == null || sesion.isExpired) {
+      // Las consultas simultáneas comparten el mismo inicio de sesión.
       await (_inicioSesion ??= _abrirSesion(cliente));
     }
     return cliente;

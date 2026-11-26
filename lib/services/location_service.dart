@@ -31,6 +31,7 @@ class LocationService {
     }
   }
 
+  // El permiso se solicita solo al intentar capturar la ubicación.
   Future<LecturaSensor> capturar() async {
     try {
       if (!await Geolocator.isLocationServiceEnabled()) {

@@ -53,6 +53,7 @@ class _EstadoPaginaHistorial extends State<PaginaHistorial> {
       final filas = await widget.servicioSupabase.consultarHistorial(
         desplazamiento: _lecturas.length,
       );
+      // Ignora la respuesta si se inició una consulta más reciente.
       if (!mounted || solicitud != _solicitud) return;
       setState(() {
         _lecturas.addAll(filas);

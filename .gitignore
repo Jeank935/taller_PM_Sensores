@@ -48,4 +48,5 @@ app.*.map.json
 .widget_preview/
 
 # Local Supabase configuration.
+/.env
 /config/supabase.local.json
