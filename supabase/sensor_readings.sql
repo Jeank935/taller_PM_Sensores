@@ -82,4 +82,6 @@ $$;
 revoke execute on function public.sensor_statistics() from public, anon;
 grant execute on function public.sensor_statistics() to authenticated;
 
+notify pgrst, 'reload schema';
+
 commit;
