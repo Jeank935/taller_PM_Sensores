@@ -18,11 +18,27 @@ class AplicacionSensorTrack extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) {
     final colores = ColorScheme.fromSeed(
-      seedColor: verdeMenta,
+      seedColor: azul,
       brightness: Brightness.dark,
-      primary: verdeMenta,
+      primary: azul,
+      onPrimary: colorFondo,
+      primaryContainer: azulOscuro,
+      onPrimaryContainer: colorTexto,
+      secondary: verde,
+      onSecondary: colorFondo,
+      secondaryContainer: azulOscuro,
+      onSecondaryContainer: colorTexto,
+      tertiary: naranja,
+      onTertiary: colorFondo,
+      error: const Color(0xFFFF585D),
+      onError: colorFondo,
       surface: colorFondo,
-      onSurface: const Color(0xFFE9F2F6),
+      onSurface: colorTexto,
+      onSurfaceVariant: colorTextoSecundario,
+      surfaceContainer: colorPanel,
+      surfaceContainerHigh: colorPanel,
+      outline: colorTextoSecundario,
+      outlineVariant: colorBorde,
     );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -36,7 +52,7 @@ class AplicacionSensorTrack extends StatelessWidget {
         appBarTheme: const AppBarTheme(backgroundColor: colorFondo),
         navigationBarTheme: const NavigationBarThemeData(
           backgroundColor: colorPanel,
-          indicatorColor: Color(0xFF264E47),
+          indicatorColor: azulOscuro,
           height: 72,
         ),
       ),

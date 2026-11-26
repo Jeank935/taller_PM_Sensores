@@ -43,11 +43,7 @@ class _EstadoSplashPage extends State<SplashPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(
-                    Icons.sensors_rounded,
-                    size: 72,
-                    color: verdeMenta,
-                  ),
+                  const Icon(Icons.sensors_rounded, size: 72, color: azul),
                   const SizedBox(height: 12),
                   Text(
                     'SensorTrack',

@@ -96,7 +96,7 @@ class _EstadoPaginaUbicacion extends State<PaginaUbicacion> {
             if (_capturando) const LinearProgressIndicator(),
             if (_error case final mensaje?) ...[
               const SizedBox(height: 12),
-              Text(mensaje, style: const TextStyle(color: ambar)),
+              Text(mensaje, style: const TextStyle(color: naranja)),
               if (_abrirAjustes != null)
                 TextButton(
                   onPressed: _abrirConfiguracion,

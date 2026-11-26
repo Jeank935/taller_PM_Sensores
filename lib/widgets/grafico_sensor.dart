@@ -16,7 +16,7 @@ class GraficoSensor extends StatelessWidget {
   Widget build(BuildContext contexto) {
     final esGps = tipo == TipoSensor.gps;
     final etiquetas = esGps ? ['Precisión (m)'] : ['X', 'Y', 'Z'];
-    final colores = [verdeMenta, const Color(0xFF83B6FF), ambar];
+    const colores = [azul, verde, naranja];
     final series = [
       for (var eje = 0; eje < etiquetas.length; eje++)
         [
@@ -96,6 +96,7 @@ class GraficoSensor extends StatelessWidget {
               ),
               lineTouchData: LineTouchData(
                 touchTooltipData: LineTouchTooltipData(
+                  getTooltipColor: (_) => colorFondo,
                   fitInsideHorizontally: true,
                   fitInsideVertically: true,
                   getTooltipItems: (puntosMarcados) => [

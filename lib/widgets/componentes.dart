@@ -4,12 +4,15 @@ import '../models/lectura_sensor.dart';
 
 typedef GuardarLectura = Future<bool> Function(LecturaSensor lectura);
 
-const colorFondo = Color(0xFF0D1520);
-const colorPanel = Color(0xFF172432);
-const colorBorde = Color(0xFF2A3B4A);
-const verdeMenta = Color(0xFF64E2B5);
-const colorTextoSecundario = Color(0xFFB2C3CD);
-const ambar = Color(0xFFFFCC83);
+const colorFondo = Color(0xFF101218);
+const colorPanel = Color(0xFF1C202A);
+const colorBorde = Color(0xFF3A4252);
+const colorTexto = Color(0xFFFAFAFA);
+const colorTextoSecundario = Color(0xFFB8BCC7);
+const azul = Color(0xFF398CFF);
+const azulOscuro = Color(0xFF123478);
+const verde = Color(0xFF22D36B);
+const naranja = Color(0xFFFF8A00);
 
 String formatearMedicion(double? valor, [int decimales = 2]) =>
     valor?.toStringAsFixed(decimales) ?? '—';
@@ -105,12 +108,12 @@ class IconoSensor extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) => DecoratedBox(
     decoration: BoxDecoration(
-      color: verdeMenta.withValues(alpha: 0.10),
+      color: azul,
       borderRadius: BorderRadius.circular(12),
     ),
     child: Padding(
       padding: const EdgeInsets.all(10),
-      child: Icon(icono, color: verdeMenta, size: 22),
+      child: Icon(icono, color: colorFondo, size: 22),
     ),
   );
 }

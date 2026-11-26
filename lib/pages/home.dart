@@ -153,7 +153,7 @@ class _EstadoHomePage extends State<HomePage> {
     appBar: AppBar(
       title: const Row(
         children: [
-          Icon(Icons.sensors_rounded, color: verdeMenta),
+          Icon(Icons.sensors_rounded, color: azul),
           SizedBox(width: 10),
           Text('SensorTrack', style: TextStyle(fontWeight: FontWeight.w700)),
         ],
@@ -240,7 +240,11 @@ class _ResumenInicio extends StatelessWidget {
                             null => 'Comprobando conexión…',
                           },
                           style: TextStyle(
-                            color: estadoConexion == false ? ambar : verdeMenta,
+                            color: switch (estadoConexion) {
+                              true => verde,
+                              false => naranja,
+                              null => colorTextoSecundario,
+                            },
                           ),
                         ),
                       ],
